@@ -4,7 +4,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-//const router = require('.src/routes/')
+
 
 app.use(cors())//
 app.use(express.json())
@@ -18,12 +18,10 @@ app.use(express.json())
 //usar rotas
 
 const index = require("./routes/index")
-const contatos = require("./routes/contatosRoutes")
+//const contatos = require("./routes/contatosRoutes")
 
 app.use("/", index) //chama index
-app.use("/contatos", contatos) //contatos
+//app.use("/contatos", contatos) //contatos
 
 
-module.exports = {
-  app
-}
+module.exports = app
