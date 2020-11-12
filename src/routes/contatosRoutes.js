@@ -6,4 +6,9 @@ router.get("/", controller.getAll) //a rota precisa de uma função para ser exe
 
 router.post("/criar", controller.addContato)
 
+router.get("/nome/:nome",controller.getName)
+
+router.get("/id/:id", controller.getByid)
+
+
 module.exports = router;
