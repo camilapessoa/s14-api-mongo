@@ -48,9 +48,8 @@ const addContato = (req, res) => {
 //getName
 const getName = (req, res) => {
 
-  contatoCollection.findOne( {nome: req.params.nome},(error, nome) => {
-
-    
+  contatoCollection.findOne({nome: req.params.nome},(error, nome) => {
+   
     if (nome) {
       return res.status(200).json({
         mensagem: "Nome encontrado",
@@ -67,38 +66,40 @@ const getName = (req, res) => {
   })
 } 
 
-/* const getName = (req, res) => {
-  const { element } = req.params
-  const name = contatoCollection.findOne(name => name.element === element) 
-    return res.status(200).json
-
-  } */
 
 
 
+//getByid "**/contatos/**id/[ID]" Retorna contato por id específico
 
-
-
-
-
-//getByid
 const getByid = (req, res) => {
-  const { idParam } = req.params
+  
+  contatoCollection.findById((req.params.id), (error, id) => {
 
-  contatoCollection.findById(idParam, (error, Id) => {
-    if (error) {
-      return res.status(500).send(error)
-    } else {
+    if (id) {
       return res.status(200).json({
         mensagem: "ID encontrado",
-        Id
+        id
+
       })
 
+    } else {
+      return res.status(500).send({
+        mensagem: "ID não encontrado",
+        error
+      })
     }
   })
 }
 
 
+
+
+//"/contatos/deletar/[ID]" Deleta contato por id específico e retorna mensagem amigável
+
+// "/contatos/atualizar/telefone/[ID]" Atualiza somente telefone do contato por id específico e retorna mensagem amigável
+
+
+// "/contatos/atualizar/[ID]" Atualiza completamente contato e retorna mensagem amigável (id não pode ser modificado)
 
 
 //exportar
