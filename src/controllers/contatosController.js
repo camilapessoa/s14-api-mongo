@@ -48,15 +48,15 @@ const addContato = (req, res) => {
 //getName
 const getName = (req, res) => {
 
-  contatoCollection.findOne({nome: req.params.nome},(error, nome) => {
-   
+  contatoCollection.findOne({ nome: req.params.nome }, (error, nome) => {
+
     if (nome) {
       return res.status(200).json({
         mensagem: "Nome encontrado",
         nome
-          
+
       })
-      
+
     } else {
       return res.status(500).send({
         mensagem: "Contato não encontrado",
@@ -64,7 +64,7 @@ const getName = (req, res) => {
       })
     }
   })
-} 
+}
 
 
 
@@ -72,7 +72,7 @@ const getName = (req, res) => {
 //getByid "**/contatos/**id/[ID]" Retorna contato por id específico
 
 const getByid = (req, res) => {
-  
+
   contatoCollection.findById((req.params.id), (error, id) => {
 
     if (id) {
@@ -92,15 +92,57 @@ const getByid = (req, res) => {
 }
 
 
+//"/contatos/deletar/[_ID]" Deleta contato por id específico e retorna mensagem amigável
+const deleteById = (req, res) => {
+  const idParam = req.query
+  contatoCollection.findByIdAndDelete(idParam, (error, contato) => {
+    if (error) {
+      return res.status(500).send({
+        mensagem: "Algo inesperado aconteceu ao deletar",
+        error
+      })
 
+    } else {
+      if (contato) {
+        return res.status(200).send({
+          mensagem: "Contato apagado com sucesso"
+        })
+      } else {
+        return res.sendStatus(404)
+      }
+    }
 
-//"/contatos/deletar/[ID]" Deleta contato por id específico e retorna mensagem amigável
+  })
+}
 
 // "/contatos/atualizar/telefone/[ID]" Atualiza somente telefone do contato por id específico e retorna mensagem amigável
 
 
 // "/contatos/atualizar/[ID]" Atualiza completamente contato e retorna mensagem amigável (id não pode ser modificado)
+const updateContact = (req, res) => {
+  const idParam = req.query
+  const contatoBody = req.body
+  const update = { new: true }
 
+  contatoCollection.findByIdAndUpdate(idParam, contatoBody, update, (error, contato) => {
+
+    if (error) {
+      return res.status(500).send({
+        mensagem: "Algo inesperado aconteceu ao atualizar!",
+        error
+      })
+
+    } else {
+      return res.status(200).send({
+        mensagem: "Contato atualizado com sucesso",
+        contato
+      })
+    }
+
+
+  }
+  )
+}
 
 //exportar
 
@@ -108,5 +150,7 @@ module.exports = {
   getAll,
   addContato,
   getName,
-  getByid
+  getByid,
+  updateContact,
+  deleteById
 }

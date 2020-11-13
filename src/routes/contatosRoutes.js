@@ -10,5 +10,8 @@ router.get("/nome/:nome",controller.getName)
 
 router.get("/id/:id", controller.getByid)
 
+router.put("/atualizar", controller.updateContact)
+
+router.delete("/deletar", controller.deleteById)
 
 module.exports = router;
