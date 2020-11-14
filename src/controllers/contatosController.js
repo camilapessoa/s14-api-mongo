@@ -1,6 +1,6 @@
 //precisamos chamar as models, e agora são os schemas e repository
 
-const { isValidObjectId } = require("mongoose")
+//const { isValidObjectId } = require("mongoose")
 const contatoCollection = require("../models/contatosSchema")
 
 //criar const com nossa função getAll
