@@ -19,7 +19,7 @@ const contatoSchema = new Schema({
     required: true
   },
   celular:{
-    type: String, //números que não irá fazer cálculo deve vir como String
+    type: String, //número que não irá fazer cálculo deve vir como String
     required: true
   },
   dataNascimento:{

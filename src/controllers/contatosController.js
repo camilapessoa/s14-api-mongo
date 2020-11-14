@@ -1,5 +1,6 @@
 //precisamos chamar as models, e agora são os schemas e repository
 
+const { isValidObjectId } = require("mongoose")
 const contatoCollection = require("../models/contatosSchema")
 
 //criar const com nossa função getAll
@@ -116,6 +117,31 @@ const deleteById = (req, res) => {
 }
 
 // "/contatos/atualizar/telefone/[ID]" Atualiza somente telefone do contato por id específico e retorna mensagem amigável
+const updatePhone = (req, res) => {
+  const idParam = req.query
+  const celular  = req.body.celular
+   
+  const update = { runValidators: true }
+
+  contatoCollection.findByIdAndUpdate(idParam, { "celular": celular }, update, (error, contato) => {
+
+    if (error) {
+      return res.status(500).send({
+        mensagem: "Algo inesperado aconteceu ao atualizar seu celular!",
+        error
+      })
+
+    } else {
+      return res.status(200).send({
+        mensagem: "Celular atualizado com sucesso",
+        contato
+      })
+    }
+
+
+  }
+  )
+}
 
 
 // "/contatos/atualizar/[ID]" Atualiza completamente contato e retorna mensagem amigável (id não pode ser modificado)
@@ -152,5 +178,6 @@ module.exports = {
   getName,
   getByid,
   updateContact,
-  deleteById
+  deleteById,
+  updatePhone
 }

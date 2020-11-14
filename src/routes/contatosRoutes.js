@@ -14,4 +14,6 @@ router.put("/atualizar", controller.updateContact)
 
 router.delete("/deletar", controller.deleteById)
 
+router.patch("/atualizar/:telefone", controller.updatePhone)
+
 module.exports = router;
