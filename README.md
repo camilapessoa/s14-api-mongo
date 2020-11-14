@@ -89,5 +89,5 @@ http://localhost:33/contatos/
 
 ## Agradecimentos 
 Às colegas:
-- <a href="https://github.com/monalizavitor"> Monaliza</a>, que observou atentamenteo o meu código e me auxiliou a executar o update.
+- <a href="https://github.com/monalizavitor"> Monaliza</a>, que observou atentamente o meu código e me auxiliou a executar o update.
 - <a href="https://github.com/tassilabomfim"> Tassila Bomfim</a>, que me auxiliou com a utilização do Postman.
